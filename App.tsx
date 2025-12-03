@@ -8,13 +8,17 @@ import { BentoGrid } from './components/BentoGrid';
 
 // Default Initial Data
 // 这里填入了张腾的中文简历数据
+// Google Drive 直链转换规则：
+// View Link: https://drive.google.com/file/d/[ID]/view?usp=sharing
+// Direct Link: https://drive.google.com/uc?export=download&id=[ID]
 const initialData: PortfolioData = {
   hero: {
     name: "张腾 Dyrus",
     role: "内容运营专家 | AIGC工作流改造者",
     tagline: "以数据驱动创意，用AI重塑内容生产力",
     description: "7年内容操盘经验。擅长海外社媒0-1搭建、AIGC深度应用及网红营销。曾助力20位网红累计涨粉500万，通过AI工作流提升3倍筛选效率。具备极强的单兵作战与跨文化团队管理能力。",
-    profileImage: "https://picsum.photos/600/900?grayscale" // 建议替换为你简历上的真实照片 URL
+    // Profile Image: Converted to direct link
+    profileImage: "https://drive.google.com/uc?export=download&id=1W7jcgvhhrOfBhCwGbEvOHBONh1l3VfFu" 
   },
   stats: [
     { label: "工作经验", value: "7年" },
@@ -29,8 +33,10 @@ const initialData: PortfolioData = {
       description: "精通PR/AE，独立完成选题策划、脚本、拍摄及后期。相比专业后期，更擅长用剪辑思维服务营销目标。",
       details: ["Premiere", "After Effects", "选题策划", "分镜脚本"],
       images: [
-        "https://picsum.photos/400/300?grayscale", 
-        "https://picsum.photos/400/301?grayscale"
+        // Video: Added #video.mp4 hash so BentoGrid treats it as video
+        "https://drive.google.com/uc?export=download&id=1B4IE6y9St9CCuB1HwwhCR2FFM0CDSyn7#video.mp4", 
+        // Cover Image
+        "https://drive.google.com/uc?export=download&id=1FIj0m0ar1FPwbjqmljbKZyfCWQxbGYqW"
       ]
     },
     {

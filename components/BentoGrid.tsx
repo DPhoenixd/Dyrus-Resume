@@ -13,7 +13,8 @@ import {
   ArrowUpRight,
   Instagram,
   Youtube,
-  Twitter
+  Twitter,
+  Play
 } from 'lucide-react';
 
 interface BentoGridProps {
@@ -40,6 +41,44 @@ const CardBase = ({ children, className = '' }: { children?: React.ReactNode; cl
     {children}
   </motion.div>
 );
+
+// Smart component to handle Images and Videos (including Google Drive hacks)
+const MediaItem = ({ src, className = '', label = '' }: { src: string, className?: string, label?: string }) => {
+  // Check if it's a video based on extension or a special hash marker we add in App.tsx
+  const isVideo = src.toLowerCase().endsWith('.mp4') || src.toLowerCase().endsWith('.webm') || src.includes('#video');
+
+  return (
+    <div className={`relative overflow-hidden group/media ${className}`}>
+      {isVideo ? (
+        <video
+          src={src}
+          className="object-cover w-full h-full transform group-hover/media:scale-105 transition-transform duration-700"
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
+      ) : (
+        <img 
+          src={src} 
+          className="object-cover w-full h-full transform group-hover/media:scale-105 transition-transform duration-700" 
+          alt={label}
+          loading="lazy"
+        />
+      )}
+      
+      {/* Overlay Label */}
+      {label && (
+        <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover/media:opacity-100 transition-opacity duration-300">
+           <span className="text-xs font-mono border border-white/50 px-2 py-1 rounded-full text-white backdrop-blur-md">
+             {isVideo ? <Play size={12} className="inline mr-1"/> : null}
+             {label}
+           </span>
+        </div>
+      )}
+    </div>
+  );
+};
 
 export const BentoGrid: React.FC<BentoGridProps> = ({ data, isEditing, onUpdate }) => {
   
@@ -69,7 +108,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ data, isEditing, onUpdate 
         <div className="absolute top-0 right-0 p-6 opacity-20 group-hover:opacity-40 transition-opacity">
            <Video size={120} />
         </div>
-        <div className="z-10">
+        <div className="z-10 relative">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 bg-pink-500/20 rounded-lg text-pink-400">
               {getIcon('creation')}
@@ -93,27 +132,17 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ data, isEditing, onUpdate 
         </div>
         
         {/* Visual representation of content creation */}
-        <div className="grid grid-cols-2 gap-2 mt-auto">
-           <div className="bg-zinc-800 h-32 rounded-xl overflow-hidden relative group/img">
-              <img 
-                src={data.skills[0].images?.[0] || "https://picsum.photos/400/300"} 
-                className="object-cover w-full h-full group-hover/img:scale-110 transition-transform duration-500 group-hover/img:grayscale-0" 
-                alt="Work 1" 
-              />
-              <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity">
-                 <span className="text-xs font-mono border border-white/50 px-2 py-1 rounded-full">Short Form</span>
-              </div>
-           </div>
-           <div className="bg-zinc-800 h-32 rounded-xl overflow-hidden relative group/img">
-              <img 
-                src={data.skills[0].images?.[1] || "https://picsum.photos/400/301"} 
-                className="object-cover w-full h-full group-hover/img:scale-110 transition-transform duration-500 group-hover/img:grayscale-0" 
-                alt="Work 2" 
-              />
-               <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity">
-                 <span className="text-xs font-mono border border-white/50 px-2 py-1 rounded-full">Documentary</span>
-              </div>
-           </div>
+        <div className="grid grid-cols-2 gap-2 mt-auto h-48">
+           <MediaItem 
+             src={data.skills[0].images?.[0] || "https://picsum.photos/400/300"}
+             className="bg-zinc-800 rounded-xl h-full"
+             label="Short Form"
+           />
+           <MediaItem 
+             src={data.skills[0].images?.[1] || "https://picsum.photos/400/301"}
+             className="bg-zinc-800 rounded-xl h-full"
+             label="Documentary"
+           />
         </div>
       </CardBase>
 
@@ -263,12 +292,13 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ data, isEditing, onUpdate 
         />
         <div className="mt-4 flex -space-x-3 overflow-hidden relative z-10 pl-2">
             {(data.skills[5].images || [1,2,3]).map((imgSrc, i) => (
-                <img 
-                  key={i} 
-                  className="inline-block h-8 w-8 rounded-full ring-2 ring-zinc-900 object-cover" 
-                  src={typeof imgSrc === 'string' ? imgSrc : `https://picsum.photos/100/100?random=${i}`} 
-                  alt=""
-                />
+                <div key={i} className="h-8 w-8 rounded-full ring-2 ring-zinc-900 overflow-hidden bg-zinc-800">
+                   <img 
+                      className="w-full h-full object-cover" 
+                      src={typeof imgSrc === 'string' ? imgSrc : `https://picsum.photos/100/100?random=${i}`} 
+                      alt=""
+                    />
+                </div>
             ))}
             <div className="h-8 w-8 rounded-full ring-2 ring-zinc-900 bg-zinc-800 flex items-center justify-center text-xs text-zinc-400 font-medium">+12</div>
         </div>
