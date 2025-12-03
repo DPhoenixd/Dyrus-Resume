@@ -1,16 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Dyrus | Content Lead</title>
+    <title>张腾 Dyrus | 内容运营专家</title>
     
-    <!-- Open Graph / Social Media Meta Tags (让链接在微信/Boss里分享时有封面图) -->
-    <meta property="og:title" content="Dyrus - Content Operations Lead" />
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="张腾 Dyrus - 内容运营专家" />
     <meta property="og:description" content="7年经验内容专家 | AI工作流改造者 | 拥有500万+涨粉操盘经验" />
     <meta property="og:image" content="https://picsum.photos/1200/630?grayscale" /> 
     <meta property="og:url" content="https://dyrus-portfolio.vercel.app" />
     <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- iOS Web App Config -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Dyrus Resume">
+    <link rel="apple-touch-icon" href="https://picsum.photos/180/180?grayscale">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,12 +58,15 @@
     "react/": "https://aistudiocdn.com/react@^19.2.0/",
     "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
     "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0"
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1",
+    "vite": "https://aistudiocdn.com/vite@^7.2.6"
   }
 }
 </script>
 </head>
   <body>
     <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>

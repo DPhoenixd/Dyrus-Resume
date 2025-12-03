@@ -7,66 +7,70 @@ import { Editable } from './components/Editable';
 import { BentoGrid } from './components/BentoGrid';
 
 // Default Initial Data
-// 你可以在这里修改所有的文字内容和图片链接
+// 这里填入了张腾的中文简历数据
 const initialData: PortfolioData = {
   hero: {
-    name: "DYRUS",
-    role: "Content Operations & Creation Lead",
-    tagline: "Bridging Creativity and Strategy in the Digital Age",
-    description: "I specialize in building scalable content engines, managing global social media presence, and leveraging AI to optimize creative workflows. Based in the Digital Realm.",
-    profileImage: "https://picsum.photos/600/900?grayscale" // Hero 左侧主要人物图片
+    name: "张腾 Dyrus",
+    role: "内容运营专家 | AIGC工作流改造者",
+    tagline: "以数据驱动创意，用AI重塑内容生产力",
+    description: "7年内容操盘经验。擅长海外社媒0-1搭建、AIGC深度应用及网红营销。曾助力20位网红累计涨粉500万，通过AI工作流提升3倍筛选效率。具备极强的单兵作战与跨文化团队管理能力。",
+    profileImage: "https://picsum.photos/600/900?grayscale" // 建议替换为你简历上的真实照片 URL
   },
   stats: [
-    { label: "Years Exp", value: "7+" },
-    { label: "Projects", value: "120+" },
-    { label: "Clients", value: "45+" },
+    { label: "工作经验", value: "7年" },
+    { label: "全网涨粉", value: "500W+" },
+    { label: "ROI增长", value: "300%" },
   ],
   skills: [
     {
       id: "1",
-      title: "Content Creation",
+      title: "视频全流程制作",
       category: "creation",
-      description: "Producing high-quality visuals, video essays, and short-form content that resonates with diverse audiences.",
-      details: [],
+      description: "精通PR/AE，独立完成选题策划、脚本、拍摄及后期。相比专业后期，更擅长用剪辑思维服务营销目标。",
+      details: ["Premiere", "After Effects", "选题策划", "分镜脚本"],
       images: [
-        "https://picsum.photos/400/300?grayscale", // 图片 1: Short Form
-        "https://picsum.photos/400/301?grayscale"  // 图片 2: Documentary
+        "https://picsum.photos/400/300?grayscale", 
+        "https://picsum.photos/400/301?grayscale"
       ]
     },
     {
       id: "2",
-      title: "Overseas Operations",
+      title: "海外社媒操盘",
       category: "social",
-      description: "Managing cross-border social media accounts (TikTok, IG, YouTube) with localized strategies.",
-      details: []
+      description: "独立负责FB, IG, TikTok, YouTube等全平台矩阵搭建。擅长通过数据复盘调整策略，单条视频观看增长100%+。",
+      details: ["TikTok", "Instagram", "Facebook", "YouTube"],
+      images: []
     },
     {
       id: "3",
-      title: "Influencer Marketing",
+      title: "网红开发与管理",
       category: "influencer",
-      description: "Connecting brands with key opinion leaders to drive authentic engagement and ROI.",
-      details: []
+      description: "独创筛选模型，2周签约40位高潜网红。协助20位签约网红在3个月内累计涨粉500万。",
+      details: ["KOL签约", "内容孵化", "数据监控"],
+      images: []
     },
     {
       id: "4",
-      title: "Content Marketing",
+      title: "内容营销策略",
       category: "marketing",
-      description: "Data-driven storytelling that converts viewers into loyal community members.",
-      details: []
+      description: "曾通过小额投流跑通ROI模型（10美元撬动300%播放增长），具备低成本撬动高回报的经营思维。",
+      details: ["数据分析", "投流测试", "转化率优化"],
+      images: []
     },
     {
       id: "5",
-      title: "AI Application",
+      title: "AIGC 深度应用",
       category: "ai",
-      description: "Implementing LLMs and Generative AI to accelerate research, scripting, and visual ideation.",
-      details: []
+      description: "不仅是使用者，更是工作流改造者。利用ChatGPT润色多语种文案，Midjourney生成视觉素材，飞书多维表格搭建筛选模型。",
+      details: ["ChatGPT", "Midjourney", "Workflow Automation"],
+      images: []
     },
     {
       id: "6",
-      title: "Creative Production",
+      title: "团队管理与沟通",
       category: "production",
-      description: "End-to-end production management from concept creative brief to final delivery.",
-      details: [],
+      description: "拥有海外生活背景，英语可作为工作语言。曾带8人团队提升执行力50%，主导OKR管理模式。",
+      details: ["跨文化沟通", "团队赋能", "OKR管理"],
       images: [
         "https://picsum.photos/100/100?random=1",
         "https://picsum.photos/100/100?random=2",
@@ -75,8 +79,8 @@ const initialData: PortfolioData = {
     }
   ],
   contact: {
-    email: "hello@dyrus.work",
-    linkedin: "dyrus-content"
+    email: "dyrusz824@163.com",
+    linkedin: "dyrus-zhang"
   }
 };
 
@@ -125,7 +129,7 @@ const App: React.FC = () => {
               <div className="overflow-hidden mb-2">
                  <Editable 
                     tag="h1" 
-                    className="text-8xl md:text-9xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-500" 
+                    className="text-6xl md:text-8xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-500" 
                     value={data.hero.name} 
                     isEditing={isEditing} 
                     onChange={(v) => updateHero('name', v)} 
@@ -133,7 +137,7 @@ const App: React.FC = () => {
               </div>
               <Editable 
                 tag="h2" 
-                className="text-2xl md:text-3xl font-medium text-zinc-400 mb-6 block" 
+                className="text-xl md:text-2xl font-medium text-zinc-400 mb-6 block" 
                 value={data.hero.role} 
                 isEditing={isEditing} 
                 onChange={(v) => updateHero('role', v)} 
@@ -163,18 +167,17 @@ const App: React.FC = () => {
               transition={{ duration: 1, delay: 0.2 }}
               className="relative hidden lg:block h-[600px]"
             >
-               {/* "Character" Simulation - Using CSS Layering/Animation to simulate 3D/Parallax */}
+               {/* "Character" Simulation */}
                <div className="absolute inset-0 flex items-center justify-center">
                   <div className="relative w-80 h-[500px] rounded-[3rem] overflow-hidden shadow-2xl ring-1 ring-white/10 group">
-                    {/* 使用配置的 profileImage */}
                     <img 
                       src={data.hero.profileImage} 
-                      alt="Dyrus Profile" 
+                      alt="Profile" 
                       className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out scale-110 group-hover:scale-100" 
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
                     
-                    {/* Floating Interface Elements Simulation */}
+                    {/* Floating Interface Elements */}
                     <motion.div 
                       animate={{ y: [0, -10, 0] }}
                       transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
@@ -185,8 +188,8 @@ const App: React.FC = () => {
                           <Check size={20} />
                         </div>
                         <div>
-                           <div className="text-xs text-zinc-400">Status</div>
-                           <div className="text-sm font-semibold text-white">Open to Work</div>
+                           <div className="text-xs text-zinc-400">状态</div>
+                           <div className="text-sm font-semibold text-white">随时入职</div>
                         </div>
                       </div>
                     </motion.div>
